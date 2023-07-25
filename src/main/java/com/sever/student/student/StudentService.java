@@ -17,29 +17,29 @@ public class StudentService {
 
     private final StudentRepository studentRepository;
 
-@Autowired
+    @Autowired
     public StudentService(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
     }
 
-    public List<Student> getStudent(){
+    public List<Student> getStudent() {
         return studentRepository.findAll();
     }
 
     public void addNewStudent(Student student) {
-        Optional<Student> findStudentByEmail=studentRepository.findStudentByEmail(student.getEmail());
-        if(findStudentByEmail.isPresent()){
+        Optional<Student> findStudentByEmail = studentRepository.findStudentByEmail(student.getEmail());
+        if (findStudentByEmail.isPresent()) {
             throw new IllegalStateException("Email is already exist");
         }
-    studentRepository.save(student);
+        studentRepository.save(student);
     }
 
     public void deleteStudent(Long id) {
-    boolean exists=studentRepository.existsById(id);
-    if(!exists){
-        throw new IllegalStateException("Student with id "+ id + " doesnt exist.");
-    }
-    studentRepository.deleteById(id);
+        boolean exists = studentRepository.existsById(id);
+        if (!exists) {
+            throw new IllegalStateException("Student with id " + id + " doesnt exist.");
+        }
+        studentRepository.deleteById(id);
     }
 
     @Transactional
@@ -48,8 +48,8 @@ public class StudentService {
                               String email) {
         Student student = studentRepository.findById(studentId)
                 .orElseThrow(() -> new IllegalStateException(
-                "student with id " + studentId + " does not exist"));
-        if (name != null && name.length() > 0 && !Objects.equals(student.getName() , name)) {
+                        "student with id " + studentId + " does not exist"));
+        if (name != null && name.length() > 0 && !Objects.equals(student.getName(), name)) {
             student.setName(name);
         }
         if (email != null && email.length() > 0 && !Objects.equals(student.getEmail(), email)) {
@@ -59,6 +59,6 @@ public class StudentService {
                 throw new IllegalStateException("email taken");
             }
             student.setEmail(email);
-       }
+        }
     }
 }

@@ -1,0 +1,29 @@
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
+    include-stacktrace: never
+  port: 8087
+  servlet:
+    context-path:
+
+spring:
+  datasource:
+    password: 747324h.H.
+    url: jdbc:postgresql://student:5432/
+    username: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    show-sql: true
+
+#    url: jdbc:postgresql://localhost:8081/student
+

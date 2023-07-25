@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+  app:
+    image: 'docker-spring-boot-postgres-modified:latest'
+    build:
+      context: .
+    volumes:
+      - /root/student-data/app/images:/app/images:rw
+    container_name: student_app
+    ports:
+      - "8442:8087"
+    depends_on:
+      - db
+
+  db:
+    image: 'postgres:14'
+    volumes:
+      - /root/student_app/postgres/data:/var/lib/postgresql/data/
+    container_name: student
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=747324h.H.

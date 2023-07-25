@@ -12,7 +12,7 @@ public class Student {
 
     @Id
     @SequenceGenerator(
-            name="student_sequence",
+            name = "student_sequence",
             sequenceName = "student_sequence",
             allocationSize = 1)
     @GeneratedValue(
@@ -28,7 +28,7 @@ public class Student {
     public Student(Long id, String name, String email, LocalDate dob) {
         this.id = id;
         this.name = name;
-        this.email= email;
+        this.email = email;
         this.dob = dob;
     }
 
@@ -75,7 +75,7 @@ public class Student {
     }
 
     public Integer getAge() {
-        return Period.between(this.dob,LocalDate.now()).getYears();
+        return Period.between(this.dob, LocalDate.now()).getYears();
     }
 
     public void setAge(Integer age) {
